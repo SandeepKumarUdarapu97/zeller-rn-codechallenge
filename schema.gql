@@ -33,3 +33,8 @@ input TableStringFilterInput {
   between: [String]
   beginsWith: String
 }
+
+type ZellerCustomerConnection {
+  items: [ZellerCustomer]
+  nextToken: String
+}
