@@ -7,7 +7,7 @@ import { addMocksToSchema } from '@graphql-tools/mock';
 import { listZellerCustomers } from './queries/listZellerCustomers.js';
 import { getZellerCustomer } from './queries/getZellerCustomer.js';
 
-const schema = await loadSchema('schema.graphql', {
+const schema = await loadSchema('schema.gql', {
   loaders: [new GraphQLFileLoader()],
 });
 
