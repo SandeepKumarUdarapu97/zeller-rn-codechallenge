@@ -8,6 +8,8 @@ Your goal is to build a React Native app that displays and filters a list of use
 - Your app should have a list of selectable user types that include Admin and Manager. Selecting a user type should perform a query against listZellerCustomers using that user type as a filter. 
 - Your app should run on IOS or android
 - Designs for the user feature are provided below (4). If you wish to add navigation, navigation bars, drawers etc, feel free to do so.
+- Tests are VERY important
+- Make sure to have clean and readable source code
 
 ## 3. Bonus Points
 
