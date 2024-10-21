@@ -1,17 +1,37 @@
-/**
- * @format
- */
-
-import 'react-native';
 import React from 'react';
-import App from '../App';
+import { render } from '@testing-library/react-native';
+import { ApolloProvider } from '@apollo/client';
+import { App } from '../src/App';
+import client from '../src/graphql/client';
 
-// Note: import explicitly to use the types shipped with jest.
-import {it} from '@jest/globals';
+jest.mock('@react-navigation/native', () => {
+  return {
+    NavigationContainer: ({ children }: any) => children,
+  };
+});
 
-// Note: test renderer must be required after react-native.
-import renderer from 'react-test-renderer';
+jest.mock('@react-navigation/stack', () => {
+  return {
+    createStackNavigator: jest.fn().mockReturnValue({
+      Navigator: ({ children }: any) => <>{children}</>,
+      Screen: () => null,
+    }),
+  };
+});
 
-it('renders correctly', () => {
-  renderer.create(<App />);
+jest.mock('../src/navigation/Navigation', () => {
+  const { Text } = require('react-native');
+  return () => <Text>Mocked Navigation</Text>;
+});
+
+describe('App Component', () => {
+  test('renders Navigation component', () => {
+    const { getByText } = render(
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    );
+    
+    expect(getByText('Mocked Navigation')).toBeTruthy();
+  });
 });
